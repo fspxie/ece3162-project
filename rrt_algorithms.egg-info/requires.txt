@@ -1,0 +1,4 @@
+rtree==1.2.0
+numpy>=1.25
+plotly
+scipy>=1.11
