@@ -67,6 +67,7 @@ class RRTStar(RRT):
         # check nearby vertices for total cost and connect shortest valid edge
         for _, x_near in L_near:
             if self.connect_to_point(tree, x_near, x_new):
+                #print("connected")
                 break
 
     def current_rewire_count(self, tree):
@@ -82,7 +83,7 @@ class RRTStar(RRT):
         # max valid rewire count
         return min(self.trees[tree].V_count, self.rewire_count)
 
-    def rrt_star(self):
+    def rrt_star(self, n):
         """
         Based on algorithm found in: Incremental Sampling-based Algorithms for Optimal Motion Planning
         http://roboticsproceedings.org/rss06/p34.pdf
@@ -91,10 +92,14 @@ class RRTStar(RRT):
         self.add_vertex(0, self.x_init)
         self.add_edge(0, self.x_init, None)
 
-        while True:
-            x_new, x_nearest = self.new_and_near(0, self.q)
-            if x_new is None:
-                continue
+        for i in range(n):
+            #x_new, x_nearest = self.new_and_near(0, self.q)
+            #if x_new is None:
+                #continue
+
+            x_new = None
+            while x_new == None:
+                x_new, x_nearest = self.new_and_near(0, self.q)
 
             # get nearby vertices and cost-to-come
             L_near = self.get_nearby_vertices(0, self.x_init, x_new)
@@ -106,6 +111,12 @@ class RRTStar(RRT):
                 # rewire tree
                 self.rewire(0, x_new, L_near)
 
-            solution = self.check_solution()
-            if solution[0]:
-                return solution[1]
+            #solution = self.check_solution()
+            #if solution[0]:
+                #return solution[1]
+        solution = self.check_solution()
+        if solution[0]:
+            return solution[1]
+        else:
+            return None
+

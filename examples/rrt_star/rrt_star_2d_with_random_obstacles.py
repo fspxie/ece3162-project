@@ -11,19 +11,20 @@ X_dimensions = np.array([(0, 100), (0, 100)])  # dimensions of Search Space
 x_init = (0, 0)  # starting location
 x_goal = (100, 100)  # goal location
 
-q = 2  # length of tree edges
-r = 1  # length of smallest edge to check for intersection with obstacles
+q = 5  # length of tree edges
+r = .1  # length of smallest edge to check for intersection with obstacles
 max_samples = 8000  # max number of samples to take before timing out
 rewire_count = 32  # optional, number of nearby branches to rewire
-prc = 0.1  # probability of checking for a connection to goal
+prc = 1  # probability of checking for a connection to goal
 
 # create Search Space
 X = SearchSpace(X_dimensions)
-n = 50
-Obstacles = generate_random_obstacles(X, x_init, x_goal, n)
+n_obs = 50
+n_iters = 500
+Obstacles = generate_random_obstacles(X, x_init, x_goal, n_obs)
 # create rrt_search
 rrt = RRTStar(X, q, x_init, x_goal, max_samples, r, prc, rewire_count)
-path = rrt.rrt_star()
+path = rrt.rrt_star(n_iters)
 
 # plot
 plot = Plot("rrt_star_2d_with_random_obstacles")

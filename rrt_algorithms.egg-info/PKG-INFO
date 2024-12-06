@@ -5,15 +5,13 @@ Summary: Collection of rrt-based algorithms that scale to n-dimensions
 Home-page: https://github.com/motion-planning/rrt-algorithms
 Author: SZanlongo
 Author-email: 
+License: UNKNOWN
+Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: rtree==1.2.0
-Requires-Dist: numpy>=1.25
-Requires-Dist: plotly
-Requires-Dist: scipy>=1.11
 
 # rrt
 Collection of rrt-based algorithms that scale to n-dimensions:
@@ -80,3 +78,5 @@ Visualization examples can be found for rrt and rrt* in both 2 and 3 dimensions.
 ## License
 
 [MIT License](https://github.com/motion-planning/rrt-algorithms/blob/master/LICENSE)
+
+

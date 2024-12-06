@@ -2,7 +2,7 @@
 # file 'LICENSE', which is part of this source code package.
 
 from rrt_algorithms.utilities.geometry import dist_between_points
-
+import numpy as np
 
 def cost_to_go(a: tuple, b: tuple) -> float:
     """
@@ -13,19 +13,21 @@ def cost_to_go(a: tuple, b: tuple) -> float:
     return dist_between_points(a, b)
 
 
-def path_cost(E, a, b):
+def path_cost(E, A, B):
     """
     Cost of the unique path from x_init to x
     :param E: edges, in form of E[child] = parent
-    :param a: initial location
-    :param b: goal location
+    :param A: initial location
+    :param B: goal location
     :return: segment_cost of unique path from x_init to x
     """
+
+
     cost = 0
-    while not b == a:
-        p = E[b]
-        cost += dist_between_points(b, p)
-        b = p
+    while not B == A:
+        p = E[B]
+        cost += dist_between_points(B, p)
+        B = p
 
     return cost
 

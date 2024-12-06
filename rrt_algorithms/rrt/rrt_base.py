@@ -110,6 +110,10 @@ class RRTBase(object):
         :return: True if can be added, False otherwise
         """
         x_nearest = self.get_nearest(tree, self.x_goal)
+        print(self.x_goal)
+        print(x_nearest) 
+        if self.x_goal == x_nearest:
+            return True
         if self.x_goal in self.trees[tree].E and x_nearest in self.trees[tree].E[self.x_goal]:
             # tree is already connected to goal using nearest vertex
             return True
@@ -137,6 +141,8 @@ class RRTBase(object):
         :param tree: rtree of all Vertices
         """
         x_nearest = self.get_nearest(tree, self.x_goal)
+        if x_nearest == self.x_goal:
+            return
         self.trees[tree].E[self.x_goal] = x_nearest
 
     def reconstruct_path(self, tree, x_init, x_goal):
@@ -152,6 +158,7 @@ class RRTBase(object):
         if x_init == x_goal:
             return path
         while not self.trees[tree].E[current] == x_init:
+            print(self.trees[tree].E[current])
             path.append(self.trees[tree].E[current])
             current = self.trees[tree].E[current]
         path.append(x_init)

@@ -17,6 +17,8 @@ def generate_random_obstacles(X: SearchSpace, start, end, n):
     Generates n random obstacles without disrupting world connectivity.
     It also respects start and end points so that they don't lie inside of an obstacle.
     """
+    random.seed(12345)
+
     # Note: Current implementation only supports hyperrectangles.
     i = 0
     obstacles = []
