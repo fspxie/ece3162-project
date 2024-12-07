@@ -13,16 +13,16 @@ x_goal = (100, 100)  # goal location
 
 q = 2  # length of tree edges
 r = .1  # length of smallest edge to check for intersection with obstacles
-max_samples = 8000  # max number of samples to take before timing out
+max_samples = 2000  # max number of samples to take before timing out
 prc = 0.1  # probability of checking for a connection to goal
-
+n = 4000
 # create search space
 X = SearchSpace(X_dimensions)
 n_obs = 50
 Obstacles = generate_random_obstacles(X, x_init, x_goal, n_obs)
 # create rrt_search
 rrt = RRT(X, q, x_init, x_goal, max_samples, r, prc)
-path = rrt.rrt_search()
+path = rrt.rrt_search(n)
 
 # plot
 plot = Plot("rrt_2d_with_random_obstacles")

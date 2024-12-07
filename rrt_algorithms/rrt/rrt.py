@@ -15,7 +15,7 @@ class RRT(RRTBase):
         """
         super().__init__(X, q, x_init, x_goal, max_samples, r, prc)
 
-    def rrt_search(self):
+    def rrt_search(self, n):
         """
         Create and return a Rapidly-exploring Random Tree, keeps expanding until can connect to goal
         https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree
@@ -24,8 +24,10 @@ class RRT(RRTBase):
         self.add_vertex(0, self.x_init)
         self.add_edge(0, self.x_init, None)
 
-        while True:
-            x_new, x_nearest = self.new_and_near(0, self.q)
+        for i in range(n):
+            x_new = None
+            while x_new == None:
+                x_new, x_nearest = self.new_and_near(0, self.q)
 
             if x_new is None:
                 continue
@@ -33,6 +35,6 @@ class RRT(RRTBase):
             # connect shortest valid edge
             self.connect_to_point(0, x_nearest, x_new)
 
-            solution = self.check_solution()
-            if solution[0]:
-                return solution[1]
+        solution = self.check_solution()
+        if solution[0]:
+            return solution[1]

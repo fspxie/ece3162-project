@@ -12,15 +12,15 @@ x_init = (0, 0)  # starting location
 x_goal = (100, 100)  # goal location
 
 q = 5  # length of tree edges
-r = .1  # length of smallest edge to check for intersection with obstacles
+r = .2  # length of smallest edge to check for intersection with obstacles
 max_samples = 8000  # max number of samples to take before timing out
-rewire_count = 32  # optional, number of nearby branches to rewire
+rewire_count = 16  # optional, number of nearby branches to rewire
 prc = 1  # probability of checking for a connection to goal
 
 # create Search Space
 X = SearchSpace(X_dimensions)
 n_obs = 50
-n_iters = 500
+n_iters = 5000
 Obstacles = generate_random_obstacles(X, x_init, x_goal, n_obs)
 # create rrt_search
 rrt = RRTStar(X, q, x_init, x_goal, max_samples, r, prc, rewire_count)
